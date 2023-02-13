@@ -6,6 +6,31 @@ const bottom = document.querySelector(".bottom");
 
 let picNum = 1;
 
+////////////////// create buttons
+for (let i = 0; i < images.length; i++) {
+  const div = document.createElement("div");
+  div.className = "button";
+  bottom.appendChild(div);
+}
+
+const buttons = document.querySelectorAll(".button");
+buttons[0].style.backgroundColor = "grey";
+
+const resetBg = () => {
+  buttons.forEach((button) => {
+    button.style.backgroundColor = "transparent";
+  });
+};
+
+buttons.forEach((button, i) => {
+  button.addEventListener("click", () => {
+    resetBg();
+    slider.style.transform = `translateX(-${i * 800}px)`;
+    picNum = i + 1;
+    button.style.backgroundColor = "grey";
+  });
+});
+
 right.addEventListener("click", () => {
   if (picNum < images.length) {
     slider.style.transform = `translateX(-${picNum * 800}px)`;
@@ -14,6 +39,8 @@ right.addEventListener("click", () => {
     slider.style.transform = "translateX(0px)";
     picNum = 1;
   }
+  resetBg();
+  buttons[picNum - 1].style.backgroundColor = "grey";
 });
 
 left.addEventListener("click", () => {
@@ -24,11 +51,6 @@ left.addEventListener("click", () => {
     slider.style.transform = `translateX(-${(images.length - 1) * 800}px)`;
     picNum = images.length;
   }
+  resetBg();
+  buttons[picNum - 1].style.backgroundColor = "grey";
 });
-
-////////////////// create buttons
-for (let i = 0; i < images.length; i++) {
-  const div = document.createElement("div");
-  div.className = "button";
-  bottom.appendChild(div);
-}
