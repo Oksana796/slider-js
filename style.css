@@ -16,8 +16,8 @@ body {
   gap: 30px;
 }
 .frame {
-  width: 80vh;
-  height: 60vh;
+  width: 800px;
+  height: 600px;
   overflow: hidden;
 }
 .arrow {
